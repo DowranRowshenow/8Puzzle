@@ -19,7 +19,7 @@ main *
     height: 196px;
     background-color: aqua;
     border: 2px solid #aaa;
-    transition: 1s;
+    transition: 0.5s;
 }
 .empty
 {

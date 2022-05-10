@@ -1,6 +1,5 @@
 // VARIABLES
 const 
-e = document.getElementById("empty"),
 a = [    
     document.getElementById("a1"),
     document.getElementById("a2"),
@@ -40,7 +39,7 @@ function defaults()
         a[i].style.marginLeft = positions[rand[i]][0];
         a[i].style.marginTop = positions[rand[i]][1];
     }
-    /*
+    /* READY POSITIONS
     ePos = positions[7];
     for (var i = 0; i < 8; i++)
     {
@@ -48,8 +47,7 @@ function defaults()
         a[i].style.marginTop = positions[i][1];
     }
     a[7].style.marginLeft = positions[8][0];
-    a[7].style.marginTop = positions[8][1];
-    */
+    a[7].style.marginTop = positions[8][1];*/
 }
 function check(a)
 {
@@ -114,7 +112,6 @@ function check(a)
 }
 function move(a, aPos)
 {
-    
     a.style.marginLeft = ePos[0];
     a.style.marginTop = ePos[1];
     ePos = aPos;
@@ -130,10 +127,10 @@ function checkComplete()
     all.push(ePos);
     if (all.toString() == positions.toString())
     {
-        finish();
+        complete();
     }
 }
-function finish()
+function complete()
 {
     document.write("COMPLETED");
 }
