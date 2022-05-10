@@ -1,0 +1,67 @@
+body
+{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+main
+{
+    margin-top: 10%;
+    background-color: whitesmoke;
+    border: 2px solid #aaa;
+    width: 600px;
+    height: 600px;
+}
+main *
+{
+    position: absolute;
+    width: 196px;
+    height: 196px;
+    background-color: aqua;
+    border: 2px solid #aaa;
+    transition: 1s;
+}
+.empty
+{
+    visibility: hidden;
+}
+.a1
+{
+    margin-left: 0px;
+    margin-top: 0px;
+}
+.a2
+{
+    margin-left: 200px;
+    margin-top: 0px;
+}
+.a3
+{
+    margin-left: 400px;
+    margin-top: 0px;
+}
+.a4
+{
+    margin-left: 0px;
+    margin-top: 200px;
+}
+.a5
+{
+    margin-left: 200px;
+    margin-top: 200px;
+}
+.a6
+{
+    margin-left: 400px;
+    margin-top: 200px;
+}
+.a7
+{
+    margin-left: 0px;
+    margin-top: 400px;
+}
+.a8
+{
+    margin-left: 200px;
+    margin-top: 400px;
+}
