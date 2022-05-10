@@ -33,13 +33,23 @@ function main()
 // FUNCTIONS
 function defaults()
 {
-    var rand = randomArray(0,8+1);
+    var rand = randomArray(0, 8+1);
     ePos = positions[rand[8]];
     for (var i = 0; i < 8; i++)
     {
         a[i].style.marginLeft = positions[rand[i]][0];
         a[i].style.marginTop = positions[rand[i]][1];
     }
+    /*
+    ePos = positions[7];
+    for (var i = 0; i < 8; i++)
+    {
+        a[i].style.marginLeft = positions[i][0];
+        a[i].style.marginTop = positions[i][1];
+    }
+    a[7].style.marginLeft = positions[8][0];
+    a[7].style.marginTop = positions[8][1];
+    */
 }
 function check(a)
 {
@@ -104,35 +114,55 @@ function check(a)
 }
 function move(a, aPos)
 {
+    
     a.style.marginLeft = ePos[0];
     a.style.marginTop = ePos[1];
     ePos = aPos;
+}
+function checkComplete()
+{
+    var all = [];
+    for (var i = 0; i < 8; i++)
+    {
+        var aPos = [a[i].style.marginLeft, a[i].style.marginTop];
+        all.push(aPos);
+    }
+    all.push(ePos);
+    if (all.toString() == positions.toString())
+    {
+        finish();
+    }
+}
+function finish()
+{
+    document.write("COMPLETED");
 }
 
 // CLICKS
 function on_Click(a)
 {
     check(a);
+    checkComplete();
 }
 
 // STATIC FUNCTIONS
 function randomArray(min, max)
 {
-    arr=[];
+    array = [];
     for (i = 0; i < max; i++) 
     {
-        x = Math.floor( Math.random() * max) + min;
-        if(arr.includes(x) == true)
+        x = Math.floor(Math.random() * max) + min;
+        if(array.includes(x) == true)
         {
-            i=i-1;
+            i = i-1;
         }
         else
         {
-            if(x>max==false)
+            if(x > max == false)
             {
-                arr.push(x);
+                array.push(x);
             }
         }
     }
-    return arr;
+    return array;
 }
