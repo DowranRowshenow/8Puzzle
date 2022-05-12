@@ -2,22 +2,7 @@
 // VARIABLES
 const page1 = document.getElementById("page_1"),
 page2 = document.getElementById("page_2"),
-page3 = document.getElementById("page_3"),
-animationBar = document.querySelector('.animation_bar').children;
-let k = 3;
-
-// MAIN
-main_1();
-function main_1()
-{
-    setInterval(function() 
-    {
-        animationBar[(k - 1) % 3].classList.remove('current_text');
-        animationBar[k % 3].classList.add('current_text');
-        k++;
-    }, 2000);
-}
-
+page3 = document.getElementById("page_3");
 // CLICKS
 function start()
 {
@@ -27,17 +12,22 @@ function start()
     page2.style.height = "auto";
 }
 
-
-/* PAGE_2*/
+/* PAGE_2 */
 // VARIABLES
-const contin = document.getElementById("continiue");
+const contin = document.getElementById("continiue"),
+pics = document.querySelectorAll(".pic");
 var image;
-
 // CLICKS
-function select(image)
+function select(image, pic)
 {
-    this.image = image;
+    this.image = image.getAttribute('src');
+    pics.forEach(element => 
+    {
+        element.style.boxShadow = '';
+    });
+    pic.style.boxShadow = '0 0 7px 7px rgba(0, 0, 0, 0.4)';
     contin.style.visibility = "visible";
+    contin.style.opacity = "1";
 }
 function continiue()
 {
@@ -48,20 +38,13 @@ function continiue()
     main_3();
 }
 
-
 /* PAGE_3 */
 // VARIABLES
-const 
-a = [    
-    document.getElementById("a1"),
-    document.getElementById("a2"),
-    document.getElementById("a3"),
-    document.getElementById("a4"),
-    document.getElementById("a5"),
-    document.getElementById("a6"),
-    document.getElementById("a7"),
-    document.getElementById("a8"),],
-pos = [
+const a = [],
+selection = document.getElementById("select"),
+shuffleBtn = document.getElementById("shuffle");
+for (i=1; i<=8; i++) { a.push(document.getElementById("a" + i)) }
+const pos = [
     ["0px",     "0px"],
     ["200px",   "0px"],
     ["400px",   "0px"],
@@ -72,81 +55,113 @@ pos = [
     ["200px", "400px"],
     ["400px", "400px"]],
 positions = [pos[0], pos[1], pos[2], pos[3], pos[4], pos[5], pos[6], pos[7], pos[8]];
-var ePos = [], active = [];
-var moves = 0, speed = 0;
-
+var ePos = [], moves = 0, shuffleLimit = 30, speed = 600, shuffled = false;
 // MAIN
 function main_3()
 {
     defaults();
 }
-
 // FUNCTIONS
 function defaults()
 {
     ePos = pos[0];
-    for (var i = 0; i < 8; i++)
+    for (var i = 0; i < a.length; i++)
     {
         a[i].style.marginLeft = positions[i+1][0];
         a[i].style.marginTop = positions[i+1][1];
-        switch (image)
-        {
-            case 1:
-                a[i].style.backgroundImage = "url('assets/1.jpg')";
-                break;
-            case 2:
-                a[i].style.backgroundImage = "url('assets/2.jpg')";
-                break;
-            case 3:
-                a[i].style.backgroundImage = "url('assets/3.jpg')";
-                break;
-        }
+        a[i].style.backgroundImage = "url(" + image + ")";
     }
+    selection.addEventListener('click', () => 
+    {
+        var myPromise = new Promise((myResolve) => 
+        {
+            if(selection.value != 0) { myResolve() };
+        })
+        myPromise.then(() => 
+        {
+            shuffleBtn.style.visibility = "visible";
+            shuffleBtn.style.opacity = 1;
+        });
+    });
 }
 async function shuffle()
-{    
-    while (moves <= 30)
+{   
+    shuffleBtn.style.opacity = 0;
+    shuffleBtn.style.visibility = "hidden";
+    selection.style.opacity = 0;
+    selection.style.visibility = "hidden";
+    switch (selection.value)
     {
-        var array = [];
+        case "3":
+            speed = 600;
+            break;
+        case "30":
+            speed = 300;
+            break;
+        default:
+            speed = 2000 / selection.value;
+            break;
+    }
+    shuffleLimit = selection.value;
+    while (moves < shuffleLimit)
+    {
+        var array = [], last;
         switch (ePos.toString())
         {
             case pos[0].toString():
                 array = [1,3];
+                if (array.indexOf(last) != -1) { array.splice(array.indexOf(last), 1); }
+                last = 0;
                 break;
             case pos[1].toString():
                 array = [0,2,4];
+                array.splice(array.indexOf(last), 1);
+                last = 1;
                 break;
             case pos[2].toString():
                 array = [1,5];
+                array.splice(array.indexOf(last), 1);
+                last = 2;
                 break;
             case pos[3].toString():
                 array = [0,4,6];
+                array.splice(array.indexOf(last), 1);
+                last = 3;
                 break;
             case pos[4].toString():
                 array = [1,3,5,7];
+                array.splice(array.indexOf(last), 1);
+                last = 4;
                 break;
             case pos[5].toString():
                 array = [2,4,8];
+                array.splice(array.indexOf(last), 1);
+                last = 5;
                 break;
             case pos[6].toString():
                 array = [3,7];
+                array.splice(array.indexOf(last), 1);
+                last = 6;
                 break;
             case pos[7].toString():
                 array = [4,6,8];
+                array.splice(array.indexOf(last), 1);
+                last = 7;
                 break;
             case pos[8].toString():
                 array = [5,7];
+                array.splice(array.indexOf(last), 1);
+                last = 8;
                 break;
         }
         var rand = randomArrayList(array);
-        console.log(rand[0]);
         for (i = 0; i < a.length; i++)
         {
             var aPos = [a[i].style.marginLeft, a[i].style.marginTop];
             if (aPos.toString() == pos[rand[0]].toString())
             {
                 check(a[i]);
-                await sleep(600);
+                await sleep(speed);
             }
         }
     }
@@ -158,57 +173,39 @@ function check(a)
     {
         case pos[0].toString():
             if (aPos.toString() == pos[1].toString() || aPos.toString() == pos[3].toString())
-            {
-                move(a, aPos);
-            }
+            { move(a, aPos); }
             break;
         case pos[1].toString():
             if ((aPos.toString() == pos[0].toString() || aPos.toString() == pos[2].toString()) || aPos.toString() == pos[4].toString())
-            {
-                move(a, aPos);
-            }
+            { move(a, aPos); }
             break;
         case pos[2].toString():
             if (aPos.toString() == pos[1].toString() || aPos.toString() == pos[5].toString())
-            {
-                move(a, aPos);
-            }
+            { move(a, aPos); }
             break;
         case pos[3].toString():
             if ((aPos.toString() == pos[0].toString() || aPos.toString() == pos[4].toString()) || aPos.toString() == pos[6].toString())
-            {
-                move(a, aPos);
-            }
+            { move(a, aPos); }
             break;
         case pos[4].toString():
             if ((aPos.toString() == pos[1].toString() || aPos.toString() == pos[3].toString()) || (aPos.toString() == pos[5].toString() || aPos.toString() == pos[7].toString()))
-            {
-                move(a, aPos);
-            }
+            { move(a, aPos); }
             break;
         case pos[5].toString():
             if ((aPos.toString() == pos[2].toString() || aPos.toString() == pos[4].toString()) || aPos.toString() == pos[8].toString())
-            {
-                move(a, aPos);
-            }
+            { move(a, aPos); }
             break;
         case pos[6].toString():
             if (aPos.toString() == pos[3].toString() || aPos.toString() == pos[7].toString())
-            {
-                move(a, aPos);
-            }
+            { move(a, aPos); }
             break;
         case pos[7].toString():
             if ((aPos.toString() == pos[4].toString() || aPos.toString() == pos[6].toString()) || aPos.toString() == pos[8].toString())
-            {
-                move(a, aPos);
-            }
+            { move(a, aPos); }
             break;
         case pos[8].toString():
             if (aPos.toString() == pos[5].toString() || aPos.toString() == pos[7].toString())
-            {
-                move(a, aPos);
-            }
+            { move(a, aPos); }
             break;
     }
 }
@@ -218,68 +215,46 @@ function move(a, aPos)
     a.style.marginTop = ePos[1];
     ePos = aPos;
     moves++;
+    if (moves >= shuffleLimit) { shuffled = true}
     checkComplete();
 }
 function checkComplete()
 {
     all = [];
     all.push(ePos);
-    for (i = 0; i < 8; i++)
+    a.forEach(element => 
     {
-        var aPos = [a[i].style.marginLeft, a[i].style.marginTop];
+        var aPos = [element.style.marginLeft, element.style.marginTop];
         all.push(aPos);
-    } 
-    //
+    });
     for (i = 0; i < all.length; i++)
     {
-        if (all[i].toString() == positions[i].toString())
+        if (i != 0)
         {
-            a.forEach(ela => 
-            {
-                var aPos = [ela.style.marginLeft, ela.style.marginTop];
-                if (all[i].toString() == aPos.toString())
-                {
-                    ela.style.borderColor = "green";
-                }
-                else
-                {
-                    console.log(all[i].toString() + "\n" +aPos.toString());
-                    ela.style.borderColor = "red";
-                }
-            });
-        }
+            a[i-1].style.borderColor = "red";
+            if (all[i].toString() == positions[i].toString()) 
+            { a[i-1].style.borderColor = "green"; }
+        } 
     }
-    //
-    if (all.toString() == positions.toString())
-    {
-        complete();
-    }
+    if (all.toString() == positions.toString()) { complete(); }
 }
 function complete()
 {
     document.write("COMPLETED");
 }
-
 // CLICKS
 function on_Click(a)
 {
-    check(a);
+    if(shuffled) { check(a); }
 }
 function hover()
 {
-    a.forEach(element => 
-    {
-        element.style.opacity = 0.8;
-    });
+    a.forEach(element => { element.style.opacity = 0.8; });
 }
 function unhover()
 {
-    a.forEach(element => 
-    {
-        element.style.opacity = 1;
-    });
+    a.forEach(element => { element.style.opacity = 1; });
 }
-
 // STATIC FUNCTIONS
 function sleep(ms) 
 {
@@ -287,11 +262,9 @@ function sleep(ms)
 }
 function randomArrayList(nums) 
 {
-    ranNums = [],
-    i = nums.length,
-    j = 0;
-
-    while (i--) {
+    ranNums = [], i = nums.length, j = 0;
+    while (i--) 
+    {
         j = Math.floor(Math.random() * (i+1));
         ranNums.push(nums[j]);
         nums.splice(j,1);

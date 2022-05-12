@@ -93,7 +93,7 @@ body
     width: 0;
     height: 0;
     visibility: hidden;
-    display:  flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -107,12 +107,12 @@ body
     display: flex;
     justify-content: center;
 }
-.page_2 .images div
+.page_2 .images .pic
 {
     margin: 1vw;
+    padding: 1vw;
     border-radius: 1vw;
-    width: 20vw;
-    height: 13vw;
+    transition: 0.3s;
 }
 .page_2 .images div:hover
 {
@@ -132,14 +132,15 @@ body
 .page_2 button
 {
     visibility: hidden;
+    opacity: 0;
     width: 8vw;
     height: 4vw;
-    margin-top: 10vw;
+    margin-top: 5vw;
     color: #fff;
     background-color: var(--secondary);
     outline: none;
     border: none;
-    font-size: 1.3vw;
+    font-size: 1.2vw;
     padding: 0;
     border-radius: 1.5vw;
     cursor: pointer;
@@ -161,9 +162,14 @@ body
     width: 0;
     height: 0;
     visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 main
 {
+    box-shadow: 0 0 7px 7px rgba(0, 0, 0, 0.2);
     margin-top: 10%;
     background-color: whitesmoke;
     border: 2px solid #aaa;
@@ -180,6 +186,43 @@ main div
     height: 196px;
     border: 3px solid green;
     transition: 0.5s;
+}
+#select
+{
+    margin-top: 3vw;
+    padding: .7em 1em;
+    width: 15vw;
+    font-size: 1.3vw;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 7px;
+    cursor: pointer;
+}
+#shuffle
+{
+    visibility: hidden;
+    opacity: 0;
+    width: 8vw;
+    height: 4vw;
+    margin-top: 3vw;
+    color: #fff;
+    background-color: var(--secondary);
+    outline: none;
+    border: none;
+    font-size: 1.2vw;
+    padding: 0;
+    border-radius: 1.5vw;
+    cursor: pointer;
+    transition: all 500ms ease;
+    transform-origin: center;
+}
+#shuffle:hover
+{
+    background-color: #fff;
+    color: var(--secondary);
+    border: 1px solid var(--secondary);
+    transform: scale(1.1);
+    box-shadow: 0 0 7px 5px rgba(0, 0, 0, 0.2);
 }
 .empty
 {

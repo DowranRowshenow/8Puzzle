@@ -21,40 +21,32 @@
         <section class="page_2" id="page_2">
             <h1>Pick An Image</h1>
             <div class="images">
-                <div onclick="select(1)"><img src="assets/1.jpg"/></div>
-                <div onclick="select(2)"><img src="assets/2.jpg"/></div>
-                <div onclick="select(3)"><img src="assets/3.jpg"/></div>
+                <div class="pic" id="pic_1" onclick="select(img_1, pic_1)"><img id="img_1" src="assets/1.jpg"/></div>
+                <div class="pic" id="pic_2" onclick="select(img_2, pic_2)"><img id="img_2" src="assets/2.jpg"/></div>
+                <div class="pic" id="pic_3" onclick="select(img_3, pic_3)"><img id="img_3" src="assets/3.jpg"/></div>
             </div>
             <button id="continiue" onclick="continiue()">CONTINUE</button>
         </section>
         <section class="page_3" id="page_3">
             <main>
-                <div class="a1" id="a1" onclick="on_Click(a1)" onmouseover="hover()" onmouseleave="unhover()">
-                    1
-                </div>
-                <div class="a2" id="a2" onclick="on_Click(a2)" onmouseover="hover()" onmouseleave="unhover()">
-                    2
-                </div>
-                <div class="a3" id="a3" onclick="on_Click(a3)" onmouseover="hover()" onmouseleave="unhover()">
-                    3
-                </div>
-                <div class="a4" id="a4" onclick="on_Click(a4)" onmouseover="hover()" onmouseleave="unhover()">
-                    4
-                </div>
-                <div class="a5" id="a5" onclick="on_Click(a5)" onmouseover="hover()" onmouseleave="unhover()">
-                    5
-                </div>
-                <div class="a6" id="a6" onclick="on_Click(a6)" onmouseover="hover()" onmouseleave="unhover()">
-                    6
-                </div>
-                <div class="a7" id="a7" onclick="on_Click(a7)" onmouseover="hover()" onmouseleave="unhover()">
-                    7
-                </div>
-                <div class="a8" id="a8" onclick="on_Click(a8)" onmouseover="hover()" onmouseleave="unhover()">
-                    8
-                </div>
+                <div class="a1" id="a1" onclick="on_Click(a1)" onmouseover="hover()" onmouseleave="unhover()"></div>
+                <div class="a2" id="a2" onclick="on_Click(a2)" onmouseover="hover()" onmouseleave="unhover()"></div>
+                <div class="a3" id="a3" onclick="on_Click(a3)" onmouseover="hover()" onmouseleave="unhover()"></div>
+                <div class="a4" id="a4" onclick="on_Click(a4)" onmouseover="hover()" onmouseleave="unhover()"></div>
+                <div class="a5" id="a5" onclick="on_Click(a5)" onmouseover="hover()" onmouseleave="unhover()"></div>
+                <div class="a6" id="a6" onclick="on_Click(a6)" onmouseover="hover()" onmouseleave="unhover()"></div>
+                <div class="a7" id="a7" onclick="on_Click(a7)" onmouseover="hover()" onmouseleave="unhover()"></div>
+                <div class="a8" id="a8" onclick="on_Click(a8)" onmouseover="hover()" onmouseleave="unhover()"></div>
             </main>
-            <button onclick="shuffle()">SHUFFLE</button>
+            <h1>Select Shuffle Amount</h1>
+            <h2>Solve The Puzzle Now!</h2>
+            <h5>Press F5 To Restart</h5>
+            <select name="select" id="select">
+                <option value="0" disabled selected>Choose Shuffle</option>
+                <option value="3">3 Moves</option>
+                <option value="30">30 Moves</option>
+            </select>
+            <button id="shuffle" onclick="shuffle()">SHUFFLE</button>
         </section>
         <script src="app.js"></script>  
     </body>
