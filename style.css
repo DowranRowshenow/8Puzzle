@@ -15,6 +15,7 @@ body
 ::-webkit-scrollbar 
 {
     width: 0;
+    height: 0;
     background: transparent;
 }
 /* PAGE 1 */
@@ -31,36 +32,35 @@ body
 }
 .page_1 .animation_bar
 {
+    position: relative;
     box-shadow: var(--shadow);
     width: 65vw;
     height: 25vw;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    font-size: 2vw;
+    font-size: 2.5vw;
 }
-.page1 .animation_bar > div
+.page_1 .welcome
 {
+    width: 100%;
     opacity: 0;
     position: absolute;
+    text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    font-size: 1.5em;
     color: var(--primary);
-    transform: translate(0, 1vw);
-    transition: all 500ms ease-out;
+    margin-top: 30vw;
+    transition: 0.5s;
 }
-.page1 .animation_bar .current_text
+#first
 {
     opacity: 1;
-    color: rgba(0, 0, 0, 0.7);
-    transform: translate(0);
-}
-.page_1 h2
-{
-    font-size: 3vw;
-    font-weight: normal;
+    color: "rgba(0, 0, 0, 0.7)";
+    margin-top: 0;
 }
 .page_1 button
 {
@@ -106,6 +106,23 @@ body
 {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+}
+.page_2 .images .add
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.page_2 .images input
+{
+    margin-bottom: 3vw;
+    padding: .7em 1em;
+    font-size: 1.3vw;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 7px;
+    cursor: pointer;
 }
 .page_2 .images .pic
 {
@@ -114,14 +131,14 @@ body
     border-radius: 1vw;
     transition: 0.3s;
 }
-.page_2 .images div:hover
+.page_2 .images *:hover
 {
     background-color: rgb(255, 255, 255);
     cursor: pointer;
 }
 .page_2 img
 {
-    width: 20vw;
+    width: 25vw;
     border-radius: 1vw;
 }
 .page_2 img:hover
@@ -136,6 +153,7 @@ body
     width: 8vw;
     height: 4vw;
     margin-top: 5vw;
+    margin-bottom: 5vw;
     color: #fff;
     background-color: var(--secondary);
     outline: none;
@@ -187,6 +205,24 @@ main div
     border: 3px solid green;
     transition: 0.5s;
 }
+#h1, #h2, #h5
+{
+    font-size: 2vw;
+    font-weight: normal;
+    color: #333;
+    transition: 0.5s;
+}
+#h2, #h5
+{
+    font-size: 2vw;
+    visibility: hidden;
+    margin-top: -4vw;
+    opacity: 0;
+}
+#h5
+{
+    font-size: 1vw;
+}
 #select
 {
     margin-top: 3vw;
@@ -205,6 +241,7 @@ main div
     width: 8vw;
     height: 4vw;
     margin-top: 3vw;
+    margin-bottom: 5vw;
     color: #fff;
     background-color: var(--secondary);
     outline: none;

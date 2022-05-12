@@ -3,6 +3,28 @@
 const page1 = document.getElementById("page_1"),
 page2 = document.getElementById("page_2"),
 page3 = document.getElementById("page_3");
+welcome = document.querySelectorAll(".welcome");
+// MAIN
+main_1();
+async function main_1()
+{
+    for (let i=0; i<3; i++)
+    {
+        setInterval(() => 
+        {
+            clear(welcome[i]);
+        }, 6000);
+        await sleep(2000);
+    }
+    async function clear(except)
+    {
+        except.style.opacity = 1;
+        except.style.marginTop = 0;
+        await sleep(2000);
+        except.style.opacity = 0;
+        except.style.marginTop = "30vw";
+    }
+}
 // CLICKS
 function start()
 {
@@ -15,16 +37,26 @@ function start()
 /* PAGE_2 */
 // VARIABLES
 const contin = document.getElementById("continiue"),
-pics = document.querySelectorAll(".pic");
+pics = document.querySelectorAll(".pic"),
+pick = document.getElementById("add"),
+img = document.getElementById("img_0");
 var image;
+// MAIN
+pick.addEventListener('change', (event) => 
+{
+    var image = pick.files[0];
+    var reader = new FileReader();
+    reader.onload = function(e) 
+    {
+      img.src = e.target.result;
+    }
+    reader.readAsDataURL(image);
+});
 // CLICKS
 function select(image, pic)
 {
     this.image = image.getAttribute('src');
-    pics.forEach(element => 
-    {
-        element.style.boxShadow = '';
-    });
+    pics.forEach(element => { element.style.boxShadow = ''; });
     pic.style.boxShadow = '0 0 7px 7px rgba(0, 0, 0, 0.4)';
     contin.style.visibility = "visible";
     contin.style.opacity = "1";
@@ -42,7 +74,11 @@ function continiue()
 // VARIABLES
 const a = [],
 selection = document.getElementById("select"),
-shuffleBtn = document.getElementById("shuffle");
+shuffleBtn = document.getElementById("shuffle"),
+text = [
+    document.getElementById("h1"),
+    document.getElementById("h2"),
+    document.getElementById("h5")];
 for (i=1; i<=8; i++) { a.push(document.getElementById("a" + i)) }
 const pos = [
     ["0px",     "0px"],
@@ -73,11 +109,11 @@ function defaults()
     }
     selection.addEventListener('click', () => 
     {
-        var myPromise = new Promise((myResolve) => 
+        var promise = new Promise((resolve) => 
         {
-            if(selection.value != 0) { myResolve() };
-        })
-        myPromise.then(() => 
+            if(selection.value != 0) { resolve() };
+        });
+        promise.then(() => 
         {
             shuffleBtn.style.visibility = "visible";
             shuffleBtn.style.opacity = 1;
@@ -85,7 +121,17 @@ function defaults()
     });
 }
 async function shuffle()
-{   
+{
+    text[0].style.visibility = "hidden";
+    text[0].style.marginTop = "-5vw";
+    text[0].style.opacity = 0;
+    for (i=1; i<text.length; i++)
+    {
+        text[i].style.opacity = 1;
+        text[i].style.visibility = "visible";
+        text[i].style.marginTop = "5vw";
+    }
+    text[2].style.marginTop = "2vw";
     shuffleBtn.style.opacity = 0;
     shuffleBtn.style.visibility = "hidden";
     selection.style.opacity = 0;
@@ -249,7 +295,50 @@ function on_Click(a)
 }
 function hover()
 {
-    a.forEach(element => { element.style.opacity = 0.8; });
+    a.forEach(element => 
+    { 
+        element.style.opacity = 0.8;
+        var aPos = [element.style.marginLeft, element.style.marginTop];
+        switch (ePos.toString())
+        {
+            case pos[0].toString():
+                if (aPos.toString() == pos[1].toString() || aPos.toString() == pos[3].toString())
+                element.style.opacity = 1;
+                break;
+            case pos[1].toString():
+                if ((aPos.toString() == pos[0].toString() || aPos.toString() == pos[2].toString()) || aPos.toString() == pos[4].toString())
+                element.style.opacity = 1;
+                break;
+            case pos[2].toString():
+                if (aPos.toString() == pos[1].toString() || aPos.toString() == pos[5].toString())
+                element.style.opacity = 1;
+                break;
+            case pos[3].toString():
+                if ((aPos.toString() == pos[0].toString() || aPos.toString() == pos[4].toString()) || aPos.toString() == pos[6].toString())
+                element.style.opacity = 1;
+                break;
+            case pos[4].toString():
+                if ((aPos.toString() == pos[1].toString() || aPos.toString() == pos[3].toString()) || (aPos.toString() == pos[5].toString() || aPos.toString() == pos[7].toString()))
+                element.style.opacity = 1;
+                break;
+            case pos[5].toString():
+                if ((aPos.toString() == pos[2].toString() || aPos.toString() == pos[4].toString()) || aPos.toString() == pos[8].toString())
+                element.style.opacity = 1;
+                break;
+            case pos[6].toString():
+                if (aPos.toString() == pos[3].toString() || aPos.toString() == pos[7].toString())
+                element.style.opacity = 1;
+                break;
+            case pos[7].toString():
+                if ((aPos.toString() == pos[4].toString() || aPos.toString() == pos[6].toString()) || aPos.toString() == pos[8].toString())
+                element.style.opacity = 1;
+                break;
+            case pos[8].toString():
+                if (aPos.toString() == pos[5].toString() || aPos.toString() == pos[7].toString())
+                element.style.opacity = 1;
+                break;
+        }
+    });
 }
 function unhover()
 {
