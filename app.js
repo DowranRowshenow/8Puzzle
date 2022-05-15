@@ -30,10 +30,9 @@ async function main_1()
 // CLICKS
 function start()
 {
-    page1.parentNode.removeChild(page1);
+    page1.style.opacity = 0;
     page2.style.visibility = "visible";
-    page2.style.width = "auto";
-    page2.style.height = "auto";
+    page2.style.opacity = 1;
     body[0].style.overflow = "visible";
 }
 
@@ -70,10 +69,9 @@ function select(image, pic)
 }
 function continiue()
 {
-    page2.parentNode.removeChild(page2);
+    page2.style.opacity = 0;
     page3.style.visibility = "visible";
-    page3.style.width = "auto";
-    page3.style.height = "auto";
+    page3.style.opacity = 1;
     main_3();
 }
 
