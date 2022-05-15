@@ -163,7 +163,8 @@ async function shuffle()
         {
             case pos[0].toString():
                 array = [1,3];
-                if (array.indexOf(last) != -1) { array.splice(array.indexOf(last), 1); }
+                if (array.indexOf(last) != -1) 
+                { array.splice(array.indexOf(last), 1); }
                 last = 0;
                 break;
             case pos[1].toString():
@@ -293,13 +294,9 @@ function checkComplete()
 }
 function complete()
 {
-    //page3.style.opacity = 0.7;
     page4.style.opacity = 1;
     page4.style.visibility = "visible";
-    text.forEach(element => 
-    {
-        element.style.opacity = 0;
-    });
+    text.forEach(element => { element.style.opacity = 0; });
 }
 // CLICKS
 function on_Click(a)
