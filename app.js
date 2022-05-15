@@ -12,10 +12,7 @@ async function main_1()
 {
     for (let i=0; i<3; i++)
     {
-        setInterval(() => 
-        {
-            clear(welcome[i]);
-        }, 6000);
+        setInterval(() => { clear(welcome[i]); }, 6000);
         await sleep(2000);
     }
     async function clear(except)
