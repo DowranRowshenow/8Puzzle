@@ -3,7 +3,9 @@
 const page1 = document.getElementById("page_1"),
 page2 = document.getElementById("page_2"),
 page3 = document.getElementById("page_3");
+page4 = document.getElementById("page_4");
 welcome = document.querySelectorAll(".welcome");
+body = document.getElementsByTagName("body");
 // MAIN
 main_1();
 async function main_1()
@@ -32,6 +34,7 @@ function start()
     page2.style.visibility = "visible";
     page2.style.width = "auto";
     page2.style.height = "auto";
+    body[0].style.overflow = "visible";
 }
 
 /* PAGE_2 */
@@ -40,6 +43,7 @@ const contin = document.getElementById("continiue"),
 pics = document.querySelectorAll(".pic"),
 pick = document.getElementById("add"),
 img = document.getElementById("img_0");
+pic0 = document.getElementById("pic_0");
 var image;
 // MAIN
 pick.addEventListener('change', (event) => 
@@ -49,6 +53,9 @@ pick.addEventListener('change', (event) =>
     reader.onload = function(e) 
     {
       img.src = e.target.result;
+      pic0.style.height = "auto";
+      pic0.style.marginTop = "2vw";
+      pic0.style.padding = "1vw";
     }
     reader.readAsDataURL(image);
 });
@@ -129,13 +136,15 @@ async function shuffle()
     {
         text[i].style.opacity = 1;
         text[i].style.visibility = "visible";
-        text[i].style.marginTop = "5vw";
+        text[i].style.marginTop = "3vw";
     }
-    text[2].style.marginTop = "2vw";
+    text[2].style.marginTop = "0vw";
     shuffleBtn.style.opacity = 0;
     shuffleBtn.style.visibility = "hidden";
+    shuffleBtn.style.marginTop = "-10vw";
     selection.style.opacity = 0;
     selection.style.visibility = "hidden";
+    selection.style.marginTop = "-10vw";
     switch (selection.value)
     {
         case "3":
@@ -286,7 +295,13 @@ function checkComplete()
 }
 function complete()
 {
-    document.write("COMPLETED");
+    //page3.style.opacity = 0.7;
+    page4.style.opacity = 1;
+    page4.style.visibility = "visible";
+    text.forEach(element => 
+    {
+        element.style.opacity = 0;
+    });
 }
 // CLICKS
 function on_Click(a)
@@ -297,7 +312,7 @@ function hover()
 {
     a.forEach(element => 
     { 
-        element.style.opacity = 0.8;
+        element.style.opacity = 0.6;
         var aPos = [element.style.marginLeft, element.style.marginTop];
         switch (ePos.toString())
         {

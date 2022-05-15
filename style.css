@@ -6,6 +6,7 @@
 }
 body
 {
+    overflow: hidden;
     margin: 0;
     display: flex;
     justify-content: center;
@@ -25,6 +26,7 @@ body
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: absolute;
 }
 .page_1 h1
 {
@@ -90,6 +92,7 @@ body
 /* PAGE 2 */
 .page_2
 {
+    position: absolute;
     width: 0;
     height: 0;
     visibility: hidden;
@@ -100,6 +103,7 @@ body
 }
 .page_2 h1
 {
+    margin-bottom: 0vw;
     font-size: 5vw;
 }
 .page_2 .images
@@ -110,19 +114,27 @@ body
 }
 .page_2 .images .add
 {
+    align-items: center;
+    margin-top: 1vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 .page_2 .images input
 {
-    margin-bottom: 3vw;
     padding: .7em 1em;
     font-size: 1.3vw;
     background-color: #fff;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 7px;
     cursor: pointer;
+}
+#pic_0
+{
+    transition: 0.5s;
+    height: 0;
+    margin: 0vw;
+    padding: 0;
 }
 .page_2 .images .pic
 {
@@ -152,8 +164,8 @@ body
     opacity: 0;
     width: 8vw;
     height: 4vw;
-    margin-top: 5vw;
-    margin-bottom: 5vw;
+    margin-top: 2vw;
+    margin-bottom: 2vw;
     color: #fff;
     background-color: var(--secondary);
     outline: none;
@@ -177,6 +189,7 @@ body
 /* PAGE 3 */
 .page_3
 {
+    position: absolute;
     width: 0;
     height: 0;
     visibility: hidden;
@@ -225,7 +238,7 @@ main div
 }
 #select
 {
-    margin-top: 3vw;
+    margin-top: 1vw;
     padding: .7em 1em;
     width: 15vw;
     font-size: 1.3vw;
@@ -240,8 +253,8 @@ main div
     opacity: 0;
     width: 8vw;
     height: 4vw;
-    margin-top: 3vw;
-    margin-bottom: 5vw;
+    margin-top: 2vw;
+    margin-bottom: 2vw;
     color: #fff;
     background-color: var(--secondary);
     outline: none;
@@ -312,4 +325,27 @@ main div
     background-position: bottom right;
     margin-left: 200px;
     margin-top: 400px;
+}
+.page_4
+{
+    visibility: hidden;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+    color: darkcyan;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+.page_4 h1
+{
+    font-size: 5vw;
+}
+.page_4 h3
+{
+    font-size: 3vw;
 }
