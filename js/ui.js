@@ -33,6 +33,9 @@ export default class UI {
                     tile.style.backgroundPosition = `${x * tileSize}% ${y * tileSize}%`;
                     tile.style.backgroundSize = `${this.game.size * 100}%`;
                     tile.textContent = '';
+                    tile.style.backgroundColor = 'transparent';
+                } else {
+                    tile.style.backgroundColor = 'var(--tile-color)';
                 }
 
                 this.boardElement.appendChild(tile);
