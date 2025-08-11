@@ -1,62 +1,59 @@
 <!DOCTYPE html>
-<HTML lang="en-en">
-    <head>
-        <title>8 Puzzle</title>
-        <meta charset="UTF-8">
-        <meta name="title" content="8 Puzzle"/>
-        <meta name="description" content="8 Puzzle Game"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <link rel="stylesheet" href="style.css"/>
-        <link rel="icon" type="image/x-icon" href="assets/favicon.jpg">
-    </head>
-    <body>
-        <section class="page_1" id="page_1">
-            <h1>8 Puzzle Game</h1>
-            <div class="animation_bar">
-                <div class="welcome" id="first">Javascript Project</div>
-                <div class="welcome" id="second">by Dowran Rowshenow</div>
-                <div class="welcome" id="third">Enjoy!</div>
-            </div>
-            <button onclick="start();">START</button>
-        </section>
-        <section class="page_2" id="page_2">
-            <h1>Pick An Image</h1>
-            <div class="images">
-                <div class="pic" id="pic_1" onclick="select(img_1, pic_1)"><img id="img_1" src="assets/1.jpg"/></div>
-                <div class="pic" id="pic_2" onclick="select(img_2, pic_2)"><img id="img_2" src="assets/2.jpg"/></div>
-                <div class="pic" id="pic_3" onclick="select(img_3, pic_3)"><img id="img_3" src="assets/3.jpg"/></div>
-                <div class="add">
-                    <input id="add" type="file" accept=".jpg, .jpeg, .png">
-                    <div class="pic" id="pic_0" onclick="select(img_0, pic_0)"><img id="img_0"/></div>
-                    <button id="continiue" onclick="continiue()">CONTINUE</button>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8 Puzzle</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.jpg">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>8 Puzzle</h1>
+        </header>
+        <main>
+            <div class="game-container">
+                <div class="game-board" id="game-board"></div>
+                <div class="controls">
+                    <button id="shuffle-btn">Shuffle</button>
+                    <button id="solve-btn">Solve</button>
+                </div>
+                <div class="game-info">
+                    <p>Moves: <span id="moves">0</span></p>
+                    <p>Time: <span id="time">0s</span></p>
                 </div>
             </div>
-        </section>
-        <section class="page_3" id="page_3">
-            <main onmouseover="hover()" onmouseleave="unhover()">
-                <div class="a1" id="a1" onclick="on_Click(a1)"></div>
-                <div class="a2" id="a2" onclick="on_Click(a2)"></div>
-                <div class="a3" id="a3" onclick="on_Click(a3)"></div>
-                <div class="a4" id="a4" onclick="on_Click(a4)"></div>
-                <div class="a5" id="a5" onclick="on_Click(a5)"></div>
-                <div class="a6" id="a6" onclick="on_Click(a6)"></div>
-                <div class="a7" id="a7" onclick="on_Click(a7)"></div>
-                <div class="a8" id="a8" onclick="on_Click(a8)"></div>
-            </main>
-            <h1 id="h1">Select Shuffle Amount</h1>
-            <h2 id="h2">Solve The Puzzle Now!</h2>
-            <h5 id="h5">Press F5 To Restart</h5>
-            <select name="select" id="select">
-                <option value="0" disabled selected>Choose Shuffle</option>
-                <option value="3">3 Moves</option>
-                <option value="30">30 Moves</option>
-            </select>
-            <button id="shuffle" onclick="shuffle()">SHUFFLE</button>
-        </section>
-        <section class="page_4" id="page_4">
-            <h1>Congratulations!</h1>
-            <h3>Press F5 To Restart</h3>
-        </section>
-        <script src="app.js"></script>  
-    </body>
-</HTML>
+            <div class="image-selection">
+                <h2>Select an Image</h2>
+                <div class="images">
+                    <img src="assets/1.jpg" alt="Puzzle Image 1" class="puzzle-img">
+                    <img src="assets/2.jpg" alt="Puzzle Image 2" class="puzzle-img">
+                    <img src="assets/3.jpg" alt="Puzzle Image 3" class="puzzle-img">
+                </div>
+.
+                <div class="upload-container">
+                    <input type="file" id="upload-img" accept="image/*">
+                    <label for="upload-img">Upload Image</label>
+                </div>
+            </div>
+            <div class="difficulty-selection">
+                <h2>Difficulty</h2>
+                <select id="difficulty">
+                    <option value="3">Easy (3x3)</option>
+                    <option value="4">Medium (4x4)</option>
+                    <option value="5">Hard (5x5)</option>
+                </select>
+            </div>
+            <div class="high-scores">
+                <h2>High Scores</h2>
+                <ul id="high-scores-list"></ul>
+            </div>
+        </main>
+        <footer>
+            <p>Created by Dowran Rowshenow - Improved by Jules</p>
+        </footer>
+    </div>
+    <script src="js/main.js" type="module"></script>
+</body>
+</html>
